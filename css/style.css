@@ -1,29 +1,96 @@
-body {
-    background-color: white;
-    color: black
+*{
+    box-sizing: border-box;
 }
 
-.cell {
-    width: 40px;
-    height: 40px;
+
+
+body {
+    background-color:#daded4;
+    font-family: 'Raleway', sans-serif;
+    color: #3c403d;
+    background-image: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.user-params{
     text-align: center;
-    background-color: gray;
+}
+h4{
+    display: inline-block;
+    margin-left: 30px;
+}
+.user-hints{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.user-hints:hover{
+    color:#39603d;
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+.mood{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 0px #a3bcb6;
+    width: 100px;
+    margin-left:auto ;
+    margin-right: auto ;
+    background-color:#daded4;
+    border-radius: 2px;
+    border:1px;
+}
+.cell {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background-color: #39603d;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 0px #a3bcb6;
+    border-radius: 2px;
 
 }
 
 .revealed {
-    background-color: pink;
+    background-color: #a3bcb6;
 }
 .blowed{
-    background-color: red;
+    background-color: #f1b24a;
 }
 .marked {
     background-image: url('../img/flag3.png');
     background-repeat: no-repeat;
-    background-size: 40px;
-
+    background-size: 47px;
 }
-
+button{
+    font:inherit;
+    background-color:#daded4;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bolder;
+    color:#3c403d;
+    box-shadow: 1px 1px 1px 0px #39603d;
+    border-radius: 2px;
+    border:1px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+.level{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: bolder;
+}
 .restart {
     display: none
+}
+
+.table{
+    margin-left: auto;
+    margin-right: auto;
+   
 }

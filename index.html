@@ -1,25 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Sprint 1 Day 1</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Sprint 1 Day 1</title>
 </head>
+
 <body>
-    <body onload="initGame()">
-        <h1>Find Mines</h1>
-        <h2>Score: <span class="score"></span></h2>
-         
-        <div class="timer">Game Time is: <span></span> </div>
-        <button class="restart" onclick="initGame()">Restart</button>
-        <button class="check-win" onclick="checkGameOver()">Check Your Luck</button>
-        <table oncontextmenu ="preventDefault(event)">
-          <tbody class="board" onclick="startTimer()"></tbody>
-        </table>
-        <script src="js/utils.js"></script>
-        <script src="js/app.js"></script>
-        
-      </body>
+
+  <body onload="initGame()">
+    <h1>Relax a bit ... and find some Mines</h1>
+    <div class="user-params">
+      <h4 class="score">Revealed Cells : <span></span></h4>
+      <h4 class="timer"> Game Time : <span></span> </h4>
+      <h4 class="mines-to-reveal"> Mines to reveal : <span></span> </h4>
+      <h4 class="flags-placed"> Flags placed : <span></span> </h4>
+      <h4 class="user-lives"> Your Lives : <span></span> </h4>
+      <h4 class="user-hints" onclick="setHint()"> Your Hints : <span></span> </h4>
+
+    </div>
+
+    <div class="level">
+      <input type="radio" class="level-choice" id="beginner" data-size="4" data-mines="2" onchange="setLevel(this)" >
+      <label for="beginner">Beginner</label>
+      <input type="radio" class="level-choice" id="medium" data-size="8" data-mines="12" onchange="setLevel(this)">
+      <label for="medium">Medium</label>
+      <input type="radio" class="level-choice" id="expert" data-size="12" data-mines="30" onchange="setLevel(this)">
+      <label for="expert">Expert</label>
+    </div>
+    <div class="mood"onclick="initGame()"> Mood: <span > </span></div>
+    <button class="restart" onclick="initGame()">Restart</button>
+    <button class="check-win" onclick="checkGameOver()">Check Your Luck</button>
+    <table class="table" oncontextmenu="preventDefault(event)">
+      <tbody class="board" onclick="startTimer()"></tbody>
+    </table>
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+
+  </body>
 </body>
+
 </html>
