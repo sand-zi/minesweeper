@@ -1,10 +1,6 @@
 'use strict'
 
-// startTimer() - think later on other option to calculate time check Nevo's lesson
-
-// timer on mouse button not on click
 const MINE = '💣';
-
 
 var gBoard;
 var gLevel = {
@@ -46,8 +42,6 @@ function initGame() {
     clearInterval(gTimeInterval)
     gBoard = buildBoard();
     gAskedAdvice = false;
-    // placeMine();
-    // setMinesNegsCount(gBoard);
     renderBoard(gBoard);
     renderMinesCount();
     renderTime();
@@ -93,17 +87,15 @@ function cellMarked(elCell, i, j) {
     if (gGame.isOn) {
         var cell = gBoard[i][j];
         if (!cell.isMarked) {
-            cell.isMarked = true
-            gGame.markedCount++
-            console.log(gGame.markedCount)
+            cell.isMarked = true;
+            gGame.markedCount++;
             elCell.classList.add('marked');
-            renderFlagsPlaced()
+            renderFlagsPlaced();
         } else {
             cell.isMarked = false;
-            gGame.markedCount--
-            console.log(gGame.markedCount)
+            gGame.markedCount--;
             elCell.classList.remove('marked');
-            renderFlagsPlaced()
+            renderFlagsPlaced();
         }
     } else return;
 };
@@ -149,6 +141,11 @@ function expandShown(board, rowIdx, colIdx) {
 function cellClicked(elCell, i, j) {
     if (gGame.isOn) {
         var cell = gBoard[i][j];
+        if (gAskedAdvice && gGame.isFirstClick) {
+            alert('Sorry, no hints on very first move');
+            gAskedAdvice = false;
+            return
+        }
         if (gGame.isFirstClick) {
             cell.isShown = true;
             elCell.classList.add('revealed');
@@ -156,11 +153,12 @@ function cellClicked(elCell, i, j) {
             setMinesNegsCount(gBoard);
             gGame.isFirstClick = false;
         }
-        if(gAskedAdvice && gGame.userHints){
-            showCellsForHint(gBoard,i,j)
-            setTimeout(hideCellsForHint,500,gBoard,i,j)
+
+        if (gAskedAdvice && gGame.userHints) {
+            showCellsForHint(gBoard, i, j)
+            setTimeout(hideCellsForHint, 500, gBoard, i, j)
             gGame.userHints--
-            gAskedAdvice=false
+            gAskedAdvice = false
             renderUserHints()
             return
         }
@@ -280,8 +278,8 @@ function getMinesCells() {
 
 };
 
-function setHint(){
-    gAskedAdvice=true;
+function setHint() {
+    gAskedAdvice = true;
 }
 
 
@@ -291,7 +289,6 @@ function renderMines() {
             if ((gBoard[i][j].isMine) && (!gBoard[i][j].isBlown)) {
                 var cell = { i: i, j: j };
                 var elMine = document.querySelector(`.cell-${cell.i}-${cell.j}`);
-                // console.log(elMine)
                 elMine.innerText = MINE;
                 elMine.classList.add('revealed');
             };
@@ -336,7 +333,7 @@ function showCellsForHint(board, rowIdx, colIdx) {
                 elCell.innerText = MINE
             }
             elCell.classList.add('revealed');
-             
+
         };
     };
 
@@ -357,7 +354,7 @@ function hideCellsForHint(board, rowIdx, colIdx) {
                 elCell.innerText = ''
             }
             elCell.classList.remove('revealed');
-             
+
         };
     };
 
@@ -365,6 +362,11 @@ function hideCellsForHint(board, rowIdx, colIdx) {
 
 
 
+function gameOver() {
+    gGame.isOn = false;
+    clearInterval(gTimeInterval);
+    showRestart();
+};
 
 // startTimer() - think later on other option to calculate time check Nevo's lesson
 function startTimer() {
@@ -379,11 +381,6 @@ function startTimer() {
 
 };
 
-function gameOver() {
-    gGame.isOn = false
-    clearInterval(gTimeInterval);
-    showRestart()
-};
 
 function getGameTime() {
     var currTime = new Date().getTime();
@@ -403,7 +400,6 @@ function renderMinesCount() {
 }
 
 function renderFlagsPlaced() {
-
     document.querySelector('.flags-placed span').innerText = gGame.markedCount
 }
 function renderUserLives() {
